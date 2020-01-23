@@ -92,7 +92,7 @@ Partial Class Form1
         'browsers
         '
         Me.browsers.FormattingEnabled = True
-        Me.browsers.Items.AddRange(New Object() {"Chrome", "Firefox", "Opera", "Vivaldi", "Internet Explorer"})
+        Me.browsers.Items.AddRange(New Object() {"Chrome", "Firefox", "Opera", "Vivaldi", "Microsoft Edge", "Internet Explorer"})
         Me.browsers.Location = New System.Drawing.Point(6, 19)
         Me.browsers.Name = "browsers"
         Me.browsers.Size = New System.Drawing.Size(120, 24)

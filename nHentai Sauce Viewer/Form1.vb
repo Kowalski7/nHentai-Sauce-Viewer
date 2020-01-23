@@ -35,65 +35,56 @@ Public Class Form1
     End Sub
 
     Sub launch()
-        If browsers.SelectedItem = "Chrome" Then
-            Try
+        Try
+            If browsers.SelectedIndex = 0 Then
                 If incogEnable.Checked = True Then
                     Process.Start("chrome.exe", "-incognito " + sauceLink)
                 Else
                     Process.Start("chrome.exe", sauceLink)
                 End If
-            Catch
-                MsgBox("The selected browser does not appear to be installed!" + vbNewLine + "Please select another one.", vbCritical + vbOKOnly, "nHentai Sauce Viewer")
-            End Try
-        End If
-        If browsers.SelectedItem = "Firefox" Then
-            Try
+            End If
+            If browsers.SelectedIndex = 1 Then
                 If incogEnable.Checked = True Then
                     Process.Start("firefox.exe", "-private-window " + sauceLink)
                 Else
                     Process.Start("firefox.exe", sauceLink)
                 End If
-            Catch
-                MsgBox("The selected browser does not appear to be installed!" + vbNewLine + "Please select another one.", vbCritical + vbOKOnly, "nHentai Sauce Viewer")
-            End Try
-        End If
-        If browsers.SelectedItem = "Opera" Then
-            Try
+            End If
+            If browsers.SelectedIndex = 2 Then
                 If incogEnable.Checked = True Then
                     Process.Start("opera.exe", "-private " + sauceLink)
                 Else
                     Process.Start("opera.exe", sauceLink)
                 End If
-            Catch
-                MsgBox("The selected browser does not appear to be installed!" + vbNewLine + "Please select another one.", vbCritical + vbOKOnly, "nHentai Sauce Viewer")
-            End Try
-        End If
-        If browsers.SelectedItem = "Vivaldi" Then
-            Try
+            End If
+            If browsers.SelectedIndex = 3 Then
                 If incogEnable.Checked = True Then
                     Process.Start("vivaldi.exe", "-incognito " + sauceLink)
                 Else
                     Process.Start("vivaldi.exe", sauceLink)
                 End If
-            Catch
-                MsgBox("The selected browser does not appear to be installed!" + vbNewLine + "Please select another one.", vbCritical + vbOKOnly, "nHentai Sauce Viewer")
-            End Try
-        End If
-        If browsers.SelectedItem = "Internet Explorer" Then
-            Try
+            End If
+            If browsers.SelectedIndex = 4 Then
+                If incogEnable.Checked = True Then
+                    Process.Start("shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge", "-private " + sauceLink)
+                Else
+                    Process.Start("shell:AppsFolder\Microsoft.MicrosoftEdge_8wekyb3d8bbwe!MicrosoftEdge", sauceLink)
+                End If
+            End If
+            If browsers.SelectedIndex = 5 Then
                 If incogEnable.Checked = True Then
                     Process.Start("iexplore.exe", "-private " + sauceLink)
                 Else
                     Process.Start("iexplore.exe", sauceLink)
                 End If
-            Catch
-                MsgBox("The selected browser does not appear to be installed!" + vbNewLine + "Please select another one.", vbCritical + vbOKOnly, "nHentai Sauce Viewer")
-            End Try
-        End If
+            End If
+        Catch
+            MsgBox("The selected browser does not appear to be installed!" + vbNewLine + "Please select another one.", vbCritical + vbOKOnly, "nHentai Sauce Viewer")
+        End Try
     End Sub
 
     Sub load_config()
-        If System.IO.File.Exists("bookmarks.conf") = False Then
+        If File.Exists("bookmarks.conf") = False Then
             Return
         End If
         Dim fileReader As StreamReader = My.Computer.FileSystem.OpenTextFileReader("bookmarks.conf")
@@ -110,7 +101,7 @@ Public Class Form1
     End Sub
 
     Private Sub Save_Click(sender As Object, e As EventArgs) Handles save.Click
-        System.IO.File.AppendAllText("bookmarks.conf", sauce_id.Text & vbNewLine)
+        File.AppendAllText("bookmarks.conf", sauce_id.Text & vbNewLine)
         load_config()
     End Sub
 
@@ -126,12 +117,12 @@ Public Class Form1
 
     Private Sub Delete_Click(sender As Object, e As EventArgs) Handles delete.Click
         Dim delItem As String = bookmarks.SelectedIndex
-        If System.IO.File.Exists("bookmarks.conf") = False Then
+        If File.Exists("bookmarks.conf") = False Then
             Return
         End If
         Dim lines As List(Of String) = System.IO.File.ReadAllLines("bookmarks.conf").ToList
         lines.RemoveAt(delItem)
-        System.IO.File.WriteAllLines("bookmarks.conf", lines.ToArray)
+        File.WriteAllLines("bookmarks.conf", lines.ToArray)
         load_config()
         delete.Enabled = False
         open.Enabled = False
