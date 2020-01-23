@@ -17,6 +17,7 @@ If you ever browsed a website like Reddit, you probabily found a nice picture an
 - Firefox
 - Opera
 - Vivaldi
+- Microsoft Edge
 - Internet Explorer
 
 If your browser is not listed, contact me or add a new issue and I'll add it in a new release.
